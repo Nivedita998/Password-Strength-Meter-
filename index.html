@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Strength</title>
+  </head>
+  <style>
+    *::after,
+    *::before,
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: hsl(261, 88%, 17%);
+      color: hsl(261, 88%, 90%);
+      text-align: center;
+    }
+
+    .strength-meter {
+      height: 2rem;
+      width: 50%;
+      border: 3px solid hsl(261, 88%, 57%);
+      border-radius: 1rem;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .strength-meter::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      height: 100%;
+
+      /* will convert the variable value in % by multiply variable * 1% -----------  */
+      /* and we set deafult strength 0 and strength is variable name */
+      width: calc(1% * var(--strength, 0));
+
+      background-color: hsl(261, 88%, 67%);
+      border-radius: 1rem;
+
+      transition: width 200ms;
+    }
+
+    .password-input {
+      margin-top: 1rem;
+      width: 50%;
+      padding: 0.25rem 0.75rem;
+      background-color: hsl(261, 88%, 25%);
+      color: white;
+      border: 1px solid hsl(261, 88%, 55%);
+      text-align: center;
+      border-radius: 0.3rem;
+    }
+
+    .password-input:focus {
+      border-color: hsl(261, 88%, 70%);
+    }
+
+    .reasons > * {
+      margin-top: 0.5rem;
+      color: hsl(261, 88%, 80%);
+    }
+  </style>
+
+  <script src="script.js" defer></script>
+  <body>
+    <h1>Password Stength Test</h1>
+    <div class="strength-meter" id="strength-meter"></div>
+    <input
+      class="password-input"
+      id="password-input"
+      value="password"
+      type="text"
+      autofocus
+      aria-laballedby="password"
+    />
+    <div id="reasons" class="reasons"></div>
+  </body>
+</html>
